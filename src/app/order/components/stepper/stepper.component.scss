@@ -1,0 +1,43 @@
+@import '/src/styles/orderVariables';
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    position: relative;
+}
+
+.step-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: auto;
+    background-color: $stepBtnBgColor;
+    color: $stepTextColor;
+    transition: .1s;
+}
+
+.activeStepBtn {
+    width: 42px;
+    height: 42px;
+    background-color: $stepHoverBgColor;
+    border: 2px solid $stepBtnBgColor;
+    font-size: 20px;
+    font-weight: 700;
+    color: $stepHoverTextColor;
+}
+
+.step-item {
+    z-index: 10;
+    text-align: center;
+}
+
+#progress {
+    position: absolute;
+    width: 95%;
+    z-index: 5;
+    height: 10px;
+    margin-left: 26px;
+}

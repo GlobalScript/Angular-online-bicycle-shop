@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block" placement="bottom-end">
+      <button type="button" class="btn toggler" id="dropdownBasic1" ngbDropdownToggle>
+        <div class="basket-mark" *ngIf="cartService.basketMark"></div>
+        <i class="bi bi-cart4"></i>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [ngClass]="{basketEmpty: !cartService.basketMark}">
+        <h6 class="text-center" *ngIf="!cartService.basketMark">Cart is empty</h6>
+        <div class="basket-list" *ngIf="cartService.basketMark">
+          <div class="basket-card" *ngFor="let item of cartService.getFromCart()">
+            <div class="basket-card-header d-flex justify-content-between">
+              <h5>{{item.name}}</h5>
+              <button (click)="cartService.removeProdFromCart(item.basketCardId)" class="basket-remove"><i
+                  class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="basket-body d-flex">
+              <img ngbDropdownItem [src]="item.imgUrl" alt="avatar" (click)="detailPageRoute(item.id)">
+              <div class="basket-info">
+                <p class="m-1"><b>Price</b> {{item.price | currency: 'EUR'}}</p>
+                <p class="m-1"><b>Color</b> {{item.color}}</p>
+                <p class="m-1"><b>Size</b> {{item.size}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="basket-subtotal d-flex justify-content-around align-items-center mt-3">
+            <h4>Subtotal:</h4>
+            <h5>{{cartService.getFromCart() | subtotal | currency: 'EUR'}}</h5>
+          </div>
+          <button class="basket-checkout d-flex  align-items-center" ngbDropdownItem (click)="orderPageRoute()"><i
+              class="bi bi-check"></i>Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>

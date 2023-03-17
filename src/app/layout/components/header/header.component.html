@@ -1,0 +1,55 @@
+<header>
+    <div class="header-logo">
+        <div class="logo-theme" (click)="contactPageRoute()">My Bike</div>
+        <nav class="icon-block">
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                data-mdb-ripple-color="dark"><i class="bi bi-youtube"></i></a>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" routerLink="contact" role="button"
+                data-mdb-ripple-color="dark"><i class="bi bi-telephone-fill"></i></a>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                data-mdb-ripple-color="dark"><i class="bi bi-telegram"></i></a>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" routerLink="contact" role="button"
+                data-mdb-ripple-color="dark"><i class="bi bi-envelope-fill"></i></a>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                data-mdb-ripple-color="dark"><i class="bi bi-instagram"></i></a>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                data-mdb-ripple-color="dark"><i class="bi bi-facebook"></i></a>
+        </nav>
+        <div *ngIf="user.userName"><i class="bi bi-person"></i>{{user.userName}} {{user.userSurname}}</div>
+        <nav class="navbar bg-body-tertiary ">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <button class="btn-burger-link" data-bs-dismiss="offcanvas" aria-label="Close"
+                                    routerLink="shop">Shop</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn-burger-link" data-bs-dismiss="offcanvas" aria-label="Close"
+                                    routerLink="contact">Contact</button>
+                            </li>
+                            <li class="nav-item" *ngIf="(user.userRole | owner) || (user.userRole | admin)">
+                                <button class="btn-burger-link" data-bs-dismiss="offcanvas" aria-label="Close"
+                                    routerLink="admin">Admin</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn-burger-link" data-bs-dismiss="offcanvas" aria-label="Close"
+                                    (click)="moveTo()">Sign-in</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <app-navbar></app-navbar>
+</header>

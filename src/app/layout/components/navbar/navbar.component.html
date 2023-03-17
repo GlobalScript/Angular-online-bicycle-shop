@@ -1,0 +1,27 @@
+<div class="navigation">
+	<button class="sidebar-toggler" *ngIf="adminPath()" (click)="adminService.openSide()"><i
+			class="bi bi-layout-sidebar"></i></button>
+	<ul>
+		<li><a class="navbar-link" routerLink="shop" routerLinkActive="active">Shop</a></li>
+		<li><a class="navbar-link" routerLink="contact" routerLinkActive="active">Contact</a></li>
+		<li *ngIf="(user.userRole | owner) || (user.userRole | admin)"><a class="navbar-link" routerLink="admin"
+				routerLinkActive="active">Admin</a></li>
+		<li><a class="navbar-link" (click)="moveTo()" routerLinkActive="active"><span class="sign-icon">
+					<i class="bi bi-person-circle"></i><div class="login-mark" *ngIf="auth.isLoggedIn"></div></span></a></li>
+	</ul>
+	<div class="icon-block">
+		<a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+			data-mdb-ripple-color="dark"><i class="bi bi-youtube"></i></a>
+		<a class="btn btn-link btn-floating btn-lg text-dark m-1" routerLink="contact" role="button"
+			data-mdb-ripple-color="dark"><i class="bi bi-telephone-fill"></i></a>
+		<a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+			data-mdb-ripple-color="dark"><i class="bi bi-telegram"></i></a>
+		<a class="btn btn-link btn-floating btn-lg text-dark m-1" routerLink="contact" role="button"
+			data-mdb-ripple-color="dark"><i class="bi bi-envelope-fill"></i></a>
+		<a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+			data-mdb-ripple-color="dark"><i class="bi bi-instagram"></i></a>
+		<a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+			data-mdb-ripple-color="dark"><i class="bi bi-facebook"></i></a>
+	</div>
+	<app-basket-dropdown></app-basket-dropdown>
+</div>

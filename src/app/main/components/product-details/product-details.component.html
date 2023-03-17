@@ -1,0 +1,62 @@
+<div class="product-details">
+    <div class="product-container">
+        <div class="product-img">
+            <img [src]="crud.detailProdById?.imgUrl" class="card-img-top" alt="bicycle">
+            <div class="discount oval-block" [appDiscountColor]="crud.detailProdById?.discount || 0">
+                <span>-{{crud.detailProdById?.discount}}&#37;</span>
+            </div>
+            <div class="product-new oval-block" *ngIf="crud.detailProdById?.new">
+                <span>New</span>
+            </div>
+        </div>
+        <div class="product-body">
+            <h3 class="product-title text-center">{{crud.detailProdById?.name}}</h3>
+            <div class="discount-until">
+                <h5 class="text-center">Discoutn until {{crud.detailProdById?.discountUntil | date: "dd.MM.yyyy"}}</h5>
+            </div>
+            <div class="product-price">
+                <span class="real-price">{{crud.detailProdById?.price | currency: 'EUR'}}</span>
+                <span class="discount-price">{{crud.detailProdById?.discountPrice | currency: 'EUR'}}</span>
+            </div>
+
+            <div class="product-color">
+                <h5>Color</h5>
+                <button *ngFor="let item of crud.detailProdById?.color" (click)="prodColor = item"
+                    [ngClass]="{btnActive: item === prodColor}">{{item}}</button>
+            </div>
+            <div class="product-size">
+                <h5>Size</h5>
+                <button *ngFor="let item of crud.detailProdById?.size" (click)="prodSize = item"
+                    [ngClass]="{btnActive: item === prodSize}">{{item}}</button>
+            </div>
+            <div class="product-shipping" *ngIf="crud.detailProdById?.shipping">
+                <h5>{{crud.detailProdById?.shipping}}</h5>
+            </div>
+            <div class="product-actions">
+                <button class="add-to-cart" *ngIf="crud.detailProdById" (click)="addToCart(crud.detailProdById)"><i
+                        class="bi bi-cart-plus-fill"></i>Add to
+                    cart</button>
+                <button class="go-back-btn" (click)="location.back()"><i class="bi bi-arrow-left-circle-fill"></i>Go
+                    Back</button>
+            </div>
+        </div>
+    </div>
+    <div class="product-description">
+        <h4>Description</h4>
+        <p>{{crud.detailProdById?.description}}</p>
+        <hr>
+    </div>
+    <div class="product-reviews">
+        <h4>Reviews</h4>
+        <app-user-review></app-user-review>
+        <div class="product-review" *ngFor="let author of crud.detailProdById?.review">
+            <h6>{{author.author}}</h6>
+            <p>{{author.date}}</p>
+            <p>{{author.text}}</p>
+            <div class="stars">
+                <div class="star" *ngFor="let item of ratingArray(author.rating)"></div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<app-stepper [formCount]="orderService.formCount"></app-stepper>
+<app-delivery-address *ngIf="orderService.formCount === 1"></app-delivery-address>
+<app-delivery-date *ngIf="orderService.formCount === 2"></app-delivery-date>
+<app-payment-method *ngIf="orderService.formCount === 3"></app-payment-method>
+<app-personal-details *ngIf="orderService.formCount === 4"></app-personal-details>

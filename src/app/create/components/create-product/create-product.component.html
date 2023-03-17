@@ -1,0 +1,107 @@
+<div class="form-wrapper">
+    <form [formGroup]="form">
+        <div class="form-group row mb-3">
+            <div class="form-group col-md-6">
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" placeholder="Name" formControlName="name"
+                    [ngClass]="{validInput: name?.valid,invalidInput: name?.invalid && (name?.dirty || name?.touched)}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Shop</label>
+                <input type="text" class="form-control" id="inputShop" placeholder="Shop" formControlName="shop"
+                    [ngClass]="{validInput: shop?.valid,invalidInput: shop?.invalid && (shop?.dirty || shop?.touched)}">
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <div class="form-group col-md-6">
+                <label for="inputPrice">Price</label>
+                <input type="number" class="form-control" id="inputPrice" placeholder="1" formControlName="price"
+                    [ngClass]="{validInput: price?.valid,invalidInput: price?.invalid && (price?.dirty || price?.touched)}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputDiscount">Discount</label>
+                <input type="number" class="form-control" id="inputDiscount" placeholder="100"
+                    formControlName="discount"
+                    [ngClass]="{validInput: discount?.valid,invalidInput: discount?.invalid && (discount?.dirty || discount?.touched)}">
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <div class="col-md-6">
+                <label for="selectColor" class="col-sm-2 control-label">Color</label>
+                <select class="form-control" id="selectColor" name="color" formControlName="color"
+                    formControlName="color" (change)="createService.colorList(color?.value)"
+                    [ngClass]="{validInput: color?.valid,invalidInput: color?.invalid && (color?.dirty || color?.touched)}">
+                    <option value="" selected="selected">please select a color</option>
+                    <option [value]="color" *ngFor="let color of colors">{{color}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="selectSize" class="col-sm-2 control-label">Size</label>
+                <select class="form-control" id="selectSize" name="country" formControlName="Size"
+                    formControlName="size" (change)="createService.sizeList(size?.value)"
+                    [ngClass]="{validInput: size?.valid,invalidInput: size?.invalid && (size?.dirty || size?.touched)}">
+                    <option value="" selected="selected">please select a size</option>
+                    <option [value]="size" *ngFor="let size of sizes">{{size}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="color-size  mt-3 mb-3 row">
+            <div class="color-list col-md-6">
+                <h6>Colors</h6>
+                <ul class="p-0">
+                    <li *ngFor="let color of createService.outColors"><i class="bi bi-trash3"
+                            (click)="removeColor(color)"></i>{{color}}</li>
+                </ul>
+            </div>
+            <div class="size-list col-md-6">
+                <h6>Sizes</h6>
+                <ul class="p-0">
+                    <li *ngFor="let size of createService.outSizes"><i class="bi bi-trash3"
+                            (click)="removeSize(size)"></i>{{size}}</li>
+                </ul>
+            </div>
+        </div>
+        <fieldset class="form-group row mb-3">
+            <div class="col-md-6">
+                <label for="date" class="">Discount Until</label>
+                <div id="datepicker">
+                    <input type="date" class="form-control" id="date" formControlName="discountUntil"
+                        [ngClass]="{validInput: discountUntil?.valid,invalidInput: discountUntil?.invalid && (discountUntil?.dirty || discountUntil?.touched)}">
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="shipping" formControlName="shipping">
+                    <label class="form-check-label" for="shipping">
+                        Free shipping
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="newProd" formControlName="new">
+                    <label class="form-check-label" for="newProd">
+                        New product
+                    </label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group row">
+            <div class="mb-3">
+                <label for="formControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="formControlTextarea1" rows="2" formControlName="description"
+                    [ngClass]="{validInput: description?.valid, invalidInput: description?.invalid && (description?.dirty || description?.touched)}"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="">
+                <button [disabled]="form.invalid || fileUploadService.disabledSelectImg" type="button"
+                    (click)="formSubmit()">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+@import '/src/styles/mixins';
+@import '/src/styles/orderVariables';
+
+button {
+    @include btnStyle;
+}
+
+label {
+    width: 150px;
+
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 450px;
+}
+
+::placeholder {
+    color: $placeholderColor;
+}
+
+.error-message {
+    color: $errorMessage;
+}
+
+.validInput {
+    border: 1px solid $inputValid;
+}
+
+.invalidInput {
+    border: 1px solid $inputInvalid;
+}

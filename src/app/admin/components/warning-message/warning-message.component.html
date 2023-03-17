@@ -1,0 +1,12 @@
+<div class="modal-header d-flex justify-content-center">
+  <h4 class="modal-title text-center">{{ params.name }}</h4>
+</div>
+<div class="modal-body text-center">
+  <h5>Remove product?</h5>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+  <button type="button" class="btn btn-outline-dark" (click)="closeMessage()"><i class="bi bi-x"></i></button>
+  <div>
+    <button type="button" class="btn btn-outline-dark" (click)="remove()"><i class="bi bi-trash3"></i></button>
+  </div>
+</div>

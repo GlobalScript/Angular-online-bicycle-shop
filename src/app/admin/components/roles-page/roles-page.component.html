@@ -1,0 +1,33 @@
+<div class="search mt-3">
+  <div class="row">
+    <div class="input-group col-md-4">
+      <input class="form-control" type="email" placeholder="example@gmail.com" [(ngModel)]="inputSearch"
+        (focus)="inputSearch = ''" (keydown.enter)="search()">
+      <button class="btn btn-clear" (click)="search()">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users | roles; let i = index" [appRoleColor]="user.role">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{user.name}} {{user.surname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+      <td><button class="btn-delete" *ngIf="user.role | admin" (click)="openWarningMessage(user)"><span
+            class="btn-text">Delete</span><i class="bi bi-trash edit-icon"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

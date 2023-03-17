@@ -1,0 +1,25 @@
+<div class="card m-3">
+    <div class="card-img">
+        <img [src]="prod.prod.imgUrl" class="card-img-top" alt="bicycle">
+    </div>
+    <div class="card-body">
+        <h5 class="title">{{prod.prod.name}}</h5>
+        <div class="price">
+            <span class="real-price">{{prod.prod.price | currency: 'EUR'}}</span>
+            <span class="discount-price">{{prod.prod.discountPrice | currency: 'EUR'}}</span>
+        </div>
+        <p class="description">{{prod.prod.description | charLimit :35}}</p>
+        <div class="discount oval-block">
+            <span>-{{prod.prod.discount}}&#37;</span>
+        </div>
+        <div class="card-new oval-block" *ngIf="prod.prod.new">
+            <span>New</span>
+        </div>
+        <div class="product-shipping" *ngIf="prod.prod.shipping">
+            <h5>{{prod.prod.shipping}}</h5>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeMessage()"></button>
+</div>

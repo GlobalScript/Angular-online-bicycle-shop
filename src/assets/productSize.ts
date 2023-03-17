@@ -1,0 +1,1 @@
+export const productSize: string[] = ['S', 'M', 'L', 'XS', 'XM', 'XL', '2XL'];

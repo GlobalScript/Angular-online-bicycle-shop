@@ -1,0 +1,39 @@
+<div class="search mt-3">
+  <div class="row">
+    <div class="input-group col-md-4">
+      <input class="form-control" type="text" placeholder="search" [(ngModel)]="inputSearch">
+      <button class="btn btn-clear" (click)="inputSearch = ''">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col"><b>&#x25;</b></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of prodList | searchProd: inputSearch; index as i"
+      [ngClass]="{removeBg: prod.id === adminService.prodId}">
+      <th scope="row">{{i+1}}</th>
+      <td><img [src]="prod.imgUrl" alt="avatar" (click)="productDetails(prod.id)"></td>
+      <td>{{prod.name}}</td>
+      <td>{{prod.price | currency: 'EUR'}}</td>
+      <td>{{prod.discount}}</td>
+      <td><button class="btn-edit" (click)="selectProdEdit(prod.id)"><span class="btn-text">Edit</span><i
+            class="bi bi-pencil-square edit-icon"></i></button></td>
+      <td><button class="btn-delete"
+          (click)="openWarningMessage({name: prod.name, id: prod.id, imgUrl: prod.imgUrl})"><span
+            class="btn-text">Delete</span><i class="bi bi-trash edit-icon"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

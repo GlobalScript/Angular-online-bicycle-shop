@@ -1,0 +1,36 @@
+@mixin btnStyle {
+    height: 30px;
+    width: 160px;
+    border: 2px solid skyblue;
+    border-radius: 50px;
+    font-weight: 500;
+    display: block;
+    margin: 0 auto;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: skyblue;
+        border: none;
+        color: white;
+    }
+
+    &[disabled] {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+    }
+}
+
+@mixin btnEditDelete($btnColor) {
+    width: 40px;
+    border-radius: 10px;
+    border: 2px solid skyblue;
+    font-weight: 500;
+    padding: 2px 0;
+
+    &:hover {
+        border: 2px solid $btnColor;
+        background-color: $btnColor;
+        color: white;
+    }
+}

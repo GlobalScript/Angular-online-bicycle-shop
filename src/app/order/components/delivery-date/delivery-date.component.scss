@@ -1,0 +1,10 @@
+@import '/src/styles/mixins';
+
+button {
+    @include btnStyle;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 450px;
+}

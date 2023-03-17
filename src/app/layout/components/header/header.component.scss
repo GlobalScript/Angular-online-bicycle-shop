@@ -1,0 +1,77 @@
+@import '/src/styles/layoutVariables';
+
+i {
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 3px 8px;
+    color: $headerIconColor;
+    ;
+
+    &:hover {
+        color: $headerIconHoverColor;
+    }
+}
+
+.header-logo {
+    display: flex;
+    padding: 0 20px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    background-size: contain;
+}
+
+.logo-theme {
+    line-height: 2.1;
+    height: 47px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    color: $headerLogoColor;
+    cursor: pointer;
+}
+
+.btn-link {
+    display: none;
+}
+
+.navbar-toggler {
+    background-color: $navbarBgColor;
+    border: none;
+}
+
+.btn-burger-link {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 0 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: $headerBgColor;
+    color: $activeLinkColor;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: $headerBgColor;
+        color: $navbarLinkColor;
+    }
+}
+
+@media(min-width: 992px) {
+    .header-logo {
+        justify-content: space-around;
+    }
+
+    .btn-link {
+        display: inline;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .logo-theme {
+        font-size: 28px;
+        line-height: 1.6;
+    }
+}

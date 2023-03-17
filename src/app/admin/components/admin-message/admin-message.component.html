@@ -1,0 +1,12 @@
+<div class="modal-header d-flex justify-content-center">
+  <h4 class="modal-title text-center">{{ userData.name }} {{userData.surname}}</h4>
+</div>
+<div class="modal-body text-center">
+  <h5>Say goodbye?</h5>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+  <button type="button" class="btn btn-outline-dark" (click)="closeMessage()">No</button>
+  <div>
+    <button type="button" class="btn btn-outline-dark" (click)="remove()">Yes</button>
+  </div>
+</div>

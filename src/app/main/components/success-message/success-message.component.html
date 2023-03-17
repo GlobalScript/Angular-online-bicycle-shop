@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title">Added To Cart Successfully!</h4>
+</div>
+<div class="modal-body">
+  <img [src]="prod.data.imgUrl" alt="avatar">
+  <div class="prod-info">
+    <h4 class="text-center mb-3">{{prod.data.name}}</h4>
+    <p class="m-1"><b>Color:</b> {{prod.color}}</p>
+    <p class="m-1"><b>Size:</b> {{prod.size}}</p>
+  </div>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')"><i
+      class="bi bi-x"></i></button>
+  <div>
+    <span>Back to shopping</span>
+    <button type="button" class="btn btn-outline-dark" (click)="closeMessage()"><i
+        class="bi bi-arrow-right"></i></button>
+  </div>
+</div>

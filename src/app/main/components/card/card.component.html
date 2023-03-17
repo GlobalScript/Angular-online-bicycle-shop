@@ -1,0 +1,23 @@
+<div class="card m-3" [ngClass]="{maxDiscount: prodData.discount >= 50}">
+    <div class="card-img p-1" (click)="productDetails(prodData.id)">
+        <img [src]="prodData.imgUrl" class="card-img-top" alt="bicycle">
+    </div>
+    <div class="card-body">
+        <h5 class="title">{{prodData.name}}</h5>
+        <div class="price">
+            <span class="real-price">{{prodData.price | currency: 'EUR'}}</span>
+            <span class="discount-price">{{prodData.discountPrice | currency: 'EUR'}}</span>
+        </div>
+        <p class="description">{{prodData.description | charLimit :35}}</p>
+        <div class="discount oval-block" [appDiscountColor]="prodData.discount">
+            <span>-{{prodData.discount}}&#37;</span>
+        </div>
+        <div class="card-new oval-block" *ngIf="prodData.new">
+            <span>New</span>
+        </div>
+        <div class="stars">
+            <div class="star" *ngFor="let item of prodData.rating"></div>
+        </div>
+        <button class="add-to-card" (click)="productDetails(prodData.id)">Details</button>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="wrapper pb-3">
+  <form [formGroup]="form">
+    <h2 class="mt-3 text-center">Delivery address</h2>
+    <div class="form-body">
+      <div class="mb-3">
+        <label for="selectCountry" class="col-sm-2 control-label">Country</label>
+        <select class="form-control" id="selectCountry" name="country" formControlName="country"
+          [ngClass]="{validInput: country?.valid,invalidInput: country?.invalid && (country?.dirty || country?.touched)}">
+          <option value="" selected="selected">please select a country</option>
+          <option [value]="country" *ngFor="let country of countries">{{country}}</option>
+        </select>
+        <div *ngIf="country?.invalid && (country?.dirty || country?.touched)" class="error-message">
+          <small *ngIf="country?.errors">
+            Country is required.
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputCityTown" class="col-sm-2 control-label">City / Town</label>
+        <input type="text" class="form-control" id="inputCityTown" name="city-town" formControlName="city"
+          placeholder="city"
+          [ngClass]="{validInput: city?.valid, invalidInput: city?.invalid && (city?.dirty || city?.touched)}">
+        <div *ngIf="city?.invalid && (city?.dirty || city?.touched)" class="error-message">
+          <small *ngIf="city?.errors">
+            Сity ​​is required and must contain only latin letters.
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputStateProvinceRegion" class="col-sm-2 control-label">State / Region</label>
+        <input type="text" class="form-control" id="inputStateProvinceRegion" name="state-province-region"
+          formControlName="region" placeholder="state"
+          [ngClass]="{validInput: region?.valid, invalidInput: region?.invalid && (region?.dirty || region?.touched)}">
+        <div *ngIf="region?.invalid && (region?.dirty || region?.touched)" class="error-message">
+          <small *ngIf="region?.errors">
+            Region ​is required and must contain only latin letters.
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputAddressLine2" class="col-sm-2 control-label">Street address</label>
+        <input type="text" class="form-control" id="inputAddressLine2" name="address-line2" formControlName="address"
+          placeholder="street address"
+          [ngClass]="{validInput: address?.valid, invalidInput: address?.invalid && (address?.dirty || address?.touched)}">
+        <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="error-message">
+          <small *ngIf="address?.errors">
+            Address is required.
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputZipPostalCode" class="col-sm-2 control-label">Zip / Postal Code</label>
+        <input type="text" class="form-control" id="inputZipPostalCode" name="zip-postal-code" formControlName="zip"
+          placeholder="postal code"
+          [ngClass]="{validInput: zip?.valid, invalidInput: zip?.invalid && (zip?.dirty || zip?.touched)}">
+        <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)" class="error-message">
+          <small *ngIf="zip?.errors">
+            Code is required and must be number
+          </small>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="actions p-3">
+    <button (click)="moveNext()" [disabled]="form.invalid">Next</button>
+  </div>
+</div>

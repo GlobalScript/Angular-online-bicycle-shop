@@ -1,0 +1,97 @@
+@import '/src/styles/mainVariables';
+
+.card {
+    max-width: 350px;
+    position: relative;
+}
+
+.card-img {
+    height: 250px;
+    width: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.price {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.real-price {
+    text-decoration: line-through;
+}
+
+.oval-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 60px;
+    font-weight: 800;
+    border-radius: 50px;
+}
+
+.discount {
+    position: absolute;
+    top: 10px;
+}
+
+.card-new {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: $cardMarkNew;
+}
+
+.add-to-card {
+    height: 30px;
+    width: 150px;
+    border: 2px solid $addToCartBorder;
+    border-radius: 50px;
+    font-weight: 500;
+    display: block;
+    margin: 0 auto;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $addToCartBgColorHover;
+        border: none;
+        color: $addToCartColoHover;
+    }
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 30px 0;
+}
+
+.star {
+    background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+
+.maxDiscount {
+    max-width: 500px;
+}
+
+.maxDiscount .title,
+.description {
+    text-align: center;
+}
+
+.maxDiscount .card-img {
+    height: auto;
+}
+
+@media(min-width: 1200px) {
+    .maxDiscount .card-img {
+        height: 320px;
+    }
+}

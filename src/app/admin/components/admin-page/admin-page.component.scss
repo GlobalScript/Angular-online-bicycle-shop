@@ -1,0 +1,60 @@
+@import '/src/styles/adminVariables';
+
+a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  display: block;
+  border: 2px solid $lightColor;
+}
+
+i {
+  padding: 2px 4px;
+  border: 2px solid $darkColor;
+  border-radius: 5px;
+  color: $darkColor;
+  margin-right: 5px;
+}
+
+.sidenav {
+  width: 150px;
+  position: absolute;
+  z-index: 1;
+  top: 110px;
+  left: 0;
+  border-right: 1px solid $darkColor;
+  background-color: $lightColor;
+  overflow-x: hidden;
+  padding-top: 20px;
+  height: calc(100% - 270px);
+
+  .active {
+    border: 2px solid $darkColor;
+    border-radius: 5px;
+  }
+}
+
+.active i {
+  background-color: $darkColor;
+  color: $lightColor;
+}
+
+.openSidebar {
+  display: none;
+}
+
+@media(min-width: 766px) {
+  .sidebarMargin {
+    margin-left: 160px;
+  }
+
+  .sidenav {
+    display: none;
+  }
+
+  .openSidebar {
+    display: block;
+  }
+}

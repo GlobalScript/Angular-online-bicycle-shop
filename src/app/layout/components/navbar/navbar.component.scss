@@ -1,0 +1,135 @@
+@import '/src/styles/layoutVariables';
+
+
+ul {
+    display: none;
+    align-items: center;
+    font-size: 1.4em;
+    padding: 0;
+    margin: 0;
+
+    .active {
+        border: 2px solid $activeLinkBorderColor;
+        border-radius: 5px;
+        color: $activeLinkColor;
+    }
+}
+
+li {
+    display: inline;
+    color: $activeLinkColor;
+}
+
+li:not(:first-child):before {
+    content: " | ";
+}
+
+i {
+    font-size: 24px;
+    color: $activeLinkColor;
+
+    &:hover {
+        color: $navbarLinkColor;
+    }
+}
+
+app-basket-dropdown {
+    position: absolute;
+    right: 20px;
+}
+
+.navigation {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: $navbarBgColor;
+    height: 60px;
+}
+
+.icon-block a {
+    padding: 6px;
+}
+
+.navbar-link {
+    color: $navbarLinkColor;
+    text-align: center;
+    padding: 10px 4px 12px 4px;
+    margin-right: 5px;
+    text-decoration: none;
+
+    &:hover {
+        color: $navbarLinkHoverColor;
+    }
+}
+
+.sidebar-toggler {
+    position: absolute;
+    left: 20px;
+    border: none;
+    background-color: $navbarBgColor;
+
+    i {
+        font-size: 36px;
+        color: $navbarLinkColor;
+
+        &:hover {
+            color: $navbarLinkHoverColor;
+        }
+    }
+}
+
+.active-sidebar {
+    display: inline;
+}
+
+.sign-text {
+    display: none;
+}
+
+.sign-icon {
+    position: relative;
+    cursor: pointer;
+
+    i {
+        font-size: 28px;
+        color: $navbarLinkColor;
+
+        &:hover {
+            color: $navbarLinkHoverColor;
+        }
+    }
+
+}
+
+.login-mark {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    height: 15px;
+    width: 15px;
+    border: 2px solid $loginMarkBgColor;
+    border-radius: 50%;
+    background-color: $loginMarkColor;
+}
+
+@media (min-width: 992px) {
+    ul {
+        display: flex;
+    }
+
+    .navbar-link {
+        padding: 13px 25px 14px 25px;
+    }
+
+    .icon-block {
+        display: none;
+    }
+
+    .sign-text {
+        display: none;
+    }
+
+    .sign-icon {
+        display: inline;
+    }
+}

@@ -1,0 +1,36 @@
+<div class="wrapper pb-3">
+  <form [formGroup]="form">
+    <h2 class="text-center mt-3">Date of delivery</h2>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="radio" name="radioDate" id="radioDate1" value="today"
+        formControlName="radioDate">
+      <label class="form-check-label" for="radioDate1">
+        Today
+      </label>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="radio" name="radioDate" id="radioDate2" value="tomorrow"
+        formControlName="radioDate">
+      <label class="form-check-label" for="radioDate2">
+        Tomorrow
+      </label>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="radio" name="radioDate" id="radioDate3" value="calendar"
+        formControlName="radioDate">
+      <label class="form-check-label" for="radioDate3">
+        Choose date from calendar
+      </label>
+    </div>
+    <div class="form-group mb-3" *ngIf="form.value.radioDate === 'calendar'">
+      <label for="date" class="col-1 col-form-label">Date</label>
+      <div id="datepicker">
+        <input type="date" class="form-control" id="date" formControlName="date">
+      </div>
+    </div>
+  </form>
+  <div class="actions d-flex justify-content-center p-3">
+    <button (click)="moveTo(1)">Previous</button>
+    <button (click)="moveTo(3)" [disabled]="form.invalid">Next</button>
+  </div>
+</div>

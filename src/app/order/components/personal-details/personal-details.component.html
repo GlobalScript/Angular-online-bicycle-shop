@@ -1,0 +1,44 @@
+<div class="wrapper pb-3">
+  <form [formGroup]="form">
+    <h2 class="text-center mt-3">Personal details</h2>
+    <div class="pb-3">
+      <label for="formControlInput1" class="form-label">Name</label>
+      <input type="text" class="form-control" id="formControlInput1" placeholder="name" formControlName="name"
+        [ngClass]="{validInput: name?.valid, invalidInput: name?.invalid && (name?.dirty || name?.touched)}">
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error-message">
+        <small *ngIf="name?.errors">
+          Name ​​is required and must contain only latin letters.
+        </small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="formControlInput2" class="form-label">Surname</label>
+      <input type="text" class="form-control" id="formControlInput2" placeholder="surname" formControlName="surname"
+        [ngClass]="{validInput: surname?.valid, invalidInput: surname?.invalid && (surname?.dirty || surname?.touched)}">
+      <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)" class="error-message">
+        <small *ngIf="surname?.errors">
+          Surname ​​is required and must contain only latin letters.
+        </small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="formControlInput3" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="formControlInput3" placeholder="name@example.com"
+        formControlName="email"
+        [ngClass]="{validInput: email?.valid, invalidInput: email?.invalid && (email?.dirty || email?.touched)}">
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+        <small *ngIf="email?.errors">
+          Email is required and must be correct.
+        </small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="formControlTextarea1" class="form-label">Description</label>
+      <textarea class="form-control" id="formControlTextarea1" rows="2" formControlName="description"></textarea>
+    </div>
+  </form>
+  <div class="actions d-flex p-3">
+    <button (click)="movePrevious()">Previous</button>
+    <button (click)="createOrder()" [disabled]="form.invalid">Create order</button>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+@import "/src/styles/mainVariables";
+@import "/src/styles/mixins";
+
+i {
+    font-size: 32px;
+}
+
+img {
+    width: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+    background-color: $basketCardBorderColor;
+}
+
+.toggler {
+    position: relative;
+    border: none;
+
+    &:hover {
+        color: $basketIconHover;
+    }
+}
+
+.basket-mark {
+    position: absolute;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    border: 2px solid $basketMarkBorderColor;
+    border-radius: 50%;
+    background-color: $basketMarkColor;
+}
+
+.basket-card {
+    width: 320px;
+    margin: 10px 20px;
+    padding: 10px;
+    border: 1px solid $basketIconHover;
+    border-radius: 10px;
+}
+
+.basket-info {
+    width: 50%;
+}
+
+.basket-remove {
+    background-color: $basketCardBorderColor;
+    border: 2px solid $basketIconHover;
+    color: $basketIconHover;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: $basketIconHover;
+        border: 2px solid $basketIconHover;
+        color: $basketCardBorderColor;
+
+    }
+
+    i {
+        font-size: 16px;
+    }
+}
+
+.basket-checkout {
+    @include btnStyle;
+    margin: 20px auto;
+    border: 2px solid $basketIconHover;
+
+    &:hover {
+        border: 2px solid $basketIconHover;
+        background-color: $basketIconHover;
+        color: $basketCardBorderColor;
+    }
+
+    i {
+        color: $basketIconHover;
+        margin-right: 5px;
+    }
+}
+
+.basket-checkout:hover i {
+    color: $basketCardBorderColor;
+}
+
+.basketEmpty {
+    background-color: $basketCardBorderColor;
+    color: $basketIconHover;
+}

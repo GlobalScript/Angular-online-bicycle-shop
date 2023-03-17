@@ -1,0 +1,68 @@
+@import '/src/styles/mixins';
+@import '/src/styles/adminVariables';
+
+table {
+    margin: 10px 0;
+}
+
+img {
+    height: 50px;
+    cursor: pointer;
+}
+
+::placeholder {
+    color: $placeholder;
+}
+
+td,
+th {
+    vertical-align: middle;
+}
+
+.btn-clear {
+    position: absolute;
+    right: 10px;
+    z-index: 5;
+
+    &:hover {
+        background-color: $darkColor;
+        border-radius: 5px;
+        color: $lightColor;
+    }
+}
+
+.removeBg {
+    background-color: $removeColor;
+}
+
+.btn-edit {
+    @include btnEditDelete($editColor);
+}
+
+.btn-delete {
+    @include btnEditDelete($removeColor);
+}
+
+.btn-text {
+    display: none;
+}
+
+@media(min-width: 766px) {
+    .btn-text {
+        display: inline;
+    }
+
+    .btn-delete,
+    .btn-edit {
+        width: 80px;
+
+        &:hover .edit-icon {
+            color: $lightColor;
+        }
+    }
+
+    .edit-icon {
+        margin-left: 5px;
+        color: $darkColor;
+    }
+}

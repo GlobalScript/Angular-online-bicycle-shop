@@ -1,0 +1,26 @@
+@import '/src/styles/contactVariables';
+
+i {
+    font-size: 24px;
+    color: $contactIconColor;
+}
+
+.contact__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.contact__info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    font-weight: 500;
+}
+
+@media (min-width: 992px) {
+    .contact__info {
+        flex-direction: row;
+    }
+}

@@ -1,0 +1,26 @@
+@import '/src/styles/mixins';
+@import 'src/styles/mainVariables';
+
+button {
+    @include btnStyle;
+}
+
+i {
+    font-size: 24px;
+}
+::placeholder {
+    color: $reviewPlaceholderColor;
+}
+.write-review {
+    padding-bottom: 50px;
+}
+
+.login-message {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fce1a9;
+}
+
+.invalidInput {
+    background-color:  $reviewInvalidColor;
+}

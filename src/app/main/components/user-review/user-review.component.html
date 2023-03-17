@@ -1,0 +1,37 @@
+<div class="message-wrapper pb-3" *ngIf="!auth.isLoggedIn">
+  <p class="login-message text-center">In order to write a message, you need to log in</p>
+</div>
+<div class="write-review" *ngIf="auth.isLoggedIn">
+  <form [formGroup]="form">
+    <div class="row mb-3">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="First name" formControlName="firstName"
+          [ngClass]="{validInput: firstName?.valid,invalidInput: firstName?.invalid && (firstName?.dirty || firstName?.touched)}">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Last name" formControlName="lastName"
+          [ngClass]="{validInput: lastName?.valid,invalidInput: lastName?.invalid && (lastName?.dirty || lastName?.touched)}">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleFormControlTextarea1">Write a review</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="review"
+          [ngClass]="{validInput: review?.valid,invalidInput: review?.invalid && (review?.dirty || review?.touched)}"></textarea>
+      </div>
+    </div>
+    <div class="rating d-flex justify-content-around mb-4">
+      <ngb-rating [(rate)]="currentRate" [max]="5">
+        <ng-template let-fill="fill" let-index="index">
+          <i class="bi-star{{fill === 100 ? '-fill' : ''}} m-2" [class.filled]="fill === 100"
+            [class.low]="index < 3"></i>
+        </ng-template>
+      </ngb-rating>
+      <h5>Rate: {{currentRate}}</h5>
+    </div>
+    <div>
+      <button type="button" [disabled]="form.invalid || !currentRate" (click)="reviewSubmit()">Send</button>
+    </div>
+  </form>
+  <hr>
+</div>
