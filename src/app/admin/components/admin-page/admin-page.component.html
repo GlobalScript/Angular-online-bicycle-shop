@@ -1,6 +1,6 @@
 <aside class="sidenav" [ngClass]="{openSidebar: adminService.sideBarToggler}">
   <a routerLink="products" routerLinkActive="active"><i class="bi bi-pencil-square"></i>Products</a>
-  <a *ngIf="user.userRole | admin" routerLink="create" routerLinkActive="active"><i class="bi bi-app"></i>Create</a>
+  <a *ngIf="(user.userRole | admin) || (user.userRole | owner)" routerLink="create" routerLinkActive="active"><i class="bi bi-app"></i>Create</a>
   <a *ngIf="user.userRole | owner" routerLink="roles" routerLinkActive="active"><i class="bi bi-app"></i>Roles</a>
 </aside>
 <div class="wrapper" [ngClass]="{sidebarMargin: adminService.sideBarToggler}">

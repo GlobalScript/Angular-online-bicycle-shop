@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminMessageComponent } from '../admin-message/admin-message.component';
 import { UsersService } from 'src/app/auth/services/users.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { Roles } from 'src/app/shared/enums/roles';
-import { take } from 'rxjs'
+import { Subscription } from 'rxjs'
 import { WorkerFoundComponent } from '../worker-found/worker-found.component';
 
 @Component({
@@ -12,15 +12,16 @@ import { WorkerFoundComponent } from '../worker-found/worker-found.component';
   templateUrl: './roles-page.component.html',
   styleUrls: ['./roles-page.component.scss']
 })
-export class RolesPageComponent implements OnInit {
+export class RolesPageComponent implements OnInit, OnDestroy {
 
+  userList!: Subscription;
   users!: User[];
   inputSearch: string = '';
 
   constructor(private modalService: NgbModal, private user: UsersService) { }
 
   ngOnInit(): void {
-    this.user.getUserListByRole().subscribe(data => {
+    this.userList = this.user.getUserListByRole().subscribe(data => {
       this.users = data
     })
   }
@@ -40,6 +41,12 @@ export class RolesPageComponent implements OnInit {
         const modalRef = this.modalService.open(WorkerFoundComponent);
         modalRef.componentInstance.userData = data;
         this.inputSearch = '';
+        return;
       })
+      this.inputSearch = 'Not found';
+  }
+
+  ngOnDestroy(): void {
+    this.userList.unsubscribe();
   }
 }

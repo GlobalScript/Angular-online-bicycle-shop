@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/create/services/crud.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-basket-dropdown',
@@ -10,7 +11,12 @@ import { CrudService } from 'src/app/create/services/crud.service';
 })
 export class BasketDropdownComponent {
 
-  constructor(public cartService: CartService, private router: Router, public crud: CrudService) { }
+  constructor(
+    public cartService: CartService,
+    private router: Router,
+    public crud: CrudService,
+    public auth: AuthService
+  ) { }
 
   detailPageRoute(id: string): void {
     this.crud.getBikeByKey(id).subscribe(data => {
@@ -19,7 +25,11 @@ export class BasketDropdownComponent {
     });
   }
 
-  orderPageRoute() {
+  signIn(): void {
+    this.router.navigate(['/auth/sign-in']);
+  }
+
+  orderPageRoute(): void {
     this.router.navigate(['/order']);
   }
 }

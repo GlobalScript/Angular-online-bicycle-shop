@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CrudService } from 'src/app/create/services/crud.service';
 import { AdminService } from '../../services/admin.service';
 import { UsersService } from 'src/app/auth/services/users.service';
@@ -13,7 +14,7 @@ import { Roles } from 'src/app/shared/enums/roles';
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.scss']
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
@@ -23,13 +24,14 @@ export class ProductsPageComponent implements OnInit {
     public user: UsersService
   ) { }
 
+  prodsSub!: Subscription;
   prodList!: Bike[];
   inputSearch: string = '';
   prodId: string = this.adminService.prodId;
   owner: string = Roles.Owner;
 
   ngOnInit(): void {
-    this.crud.getBikeList()
+  this.prodsSub =  this.crud.getBikeList()
       .subscribe({
         next: (data) => {
           this.prodList = data;
@@ -63,5 +65,9 @@ export class ProductsPageComponent implements OnInit {
       this.crud.detailProdById = data
       this.router.navigate([`/product-details/${prodId}`])
     });
+  }
+
+  ngOnDestroy(): void {
+    this.prodsSub.unsubscribe();
   }
 }
