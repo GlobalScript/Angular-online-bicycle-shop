@@ -3,9 +3,8 @@ import { BikeResponse } from 'src/app/main/interfaces/bike-response';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Bike } from 'src/app/main/interfaces/bike';
 import { FileUploadService } from './file-upload.service';
-import { Observable, map,first } from 'rxjs';
+import { Observable, map, first } from 'rxjs';
 import { ProductCardModel } from 'src/app/main/models/productCard.model';
-import { Review } from 'src/app/main/interfaces/review';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +32,7 @@ export class CrudService {
   }
 
   prodDataByKey(key: string): void {
-    this.getBikeByKey(key).subscribe(data => this.detailProdById = data)
+    this.getBikeByKey(key).pipe(first()).subscribe(data => this.detailProdById = data)
   }
 
   getBikeList(): Observable<Bike[]> {
@@ -42,12 +41,6 @@ export class CrudService {
         new ProductCardModel({ ...item.payload.toJSON(), id: item.key } as BikeResponse).getCardData()))
         .sort((a, b) => -a.discount - -b.discount)))
   }
-
-getRewiewByKey(id: string) {
-  return this.db.list('bikes', ref => ref.orderByKey().equalTo(id))
-      .valueChanges()
-      .pipe(first())
-}
 
   updateBike(key: string, bike: BikeResponse): AngularFireList<BikeResponse> {
     this.bikeListRef.update(key, bike);
@@ -60,4 +53,11 @@ getRewiewByKey(id: string) {
         this.upload.deleteFileByUrl(imgUrl);
       })
   }
+
+  // getReviewByKey(id: string) {
+  //   return this.db.list('bikes', ref => ref.orderByKey().equalTo(id))
+  //       .valueChanges()
+  //       .pipe(first())
+  // }
+
 }

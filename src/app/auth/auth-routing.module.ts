@@ -12,7 +12,7 @@ const authRoutes: Routes = [
     redirectTo: 'sign-in',
     pathMatch: 'full'
   },
-  { path: 'sign-in', component: SignInComponent, canActivate: [AuthGuard], },
+  { path: 'sign-in', component: SignInComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   { path: 'sign-out', component: SignOutComponent },
 ]

@@ -25,9 +25,6 @@ export class UsersService {
 
   addUser(user: User): AngularFireList<User> {
     this.userListRef.push(user)
-      .then(() => {
-        this.router.navigate(['auth/sign-in'])
-      })
     return this.userListRef;
   }
 
@@ -39,8 +36,8 @@ export class UsersService {
   getUserByEmail(email: string): Observable<User> {
     return this.db.list('users', ref => ref.orderByChild('email')
       .equalTo(email))
-      .stateChanges()
-      .pipe(first(), map(user => ({ ...user.payload.toJSON(), key: user.key as string } as User)))
+      .snapshotChanges()
+      .pipe(first(), map(list => list.map(user => ({ ...user.payload.toJSON(), key: user.key as string } as User))[0]))
   }
 
   getUserListByRole(): Observable<User[]> {
