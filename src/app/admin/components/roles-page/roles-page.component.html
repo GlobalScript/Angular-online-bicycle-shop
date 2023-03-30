@@ -1,7 +1,7 @@
 <div class="search mt-3">
   <div class="row">
     <div class="input-group col-md-4">
-      <input class="form-control" type="email" placeholder="example@gmail.com" [(ngModel)]="inputSearch"
+      <input class="form-control" type="email" placeholder="find email in the database" [(ngModel)]="inputSearch"
         (focus)="inputSearch = ''" (keydown.enter)="search()">
       <button class="btn btn-clear" (click)="search()">
         <i class="bi bi-search"></i>

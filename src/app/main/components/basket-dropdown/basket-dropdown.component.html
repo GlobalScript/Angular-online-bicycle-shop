@@ -27,8 +27,9 @@
             <h4>Subtotal:</h4>
             <h5>{{cartService.getFromCart() | subtotal | currency: 'EUR'}}</h5>
           </div>
-          <button class="basket-checkout d-flex  align-items-center" ngbDropdownItem (click)="orderPageRoute()"><i
+          <button class="basket-checkout d-flex  align-items-center" ngbDropdownItem (click)="orderPageRoute()" *ngIf="auth.isLoggedIn"><i
               class="bi bi-check"></i>Checkout</button>
+          <button class="basket-checkout" (click)="signIn()" *ngIf="!auth.isLoggedIn">Login</button>
         </div>
       </div>
     </div>

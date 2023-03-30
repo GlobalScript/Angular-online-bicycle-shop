@@ -65,15 +65,14 @@ export class CartService {
   cartRelevance(prodList: Bike[]) {
     this.currentCart = this.getFromCart()
     this.removeCart();
-    const prodObj: { [type: string]: Bike } = {}
-    for (let i = 0; i < prodList.length; i++) {
-      let key: string = prodList[i].id;
-      prodObj[key] = prodList[i];
-    }
+    const prodObj: { [type: string]: Bike } = prodList.reduce((acc, prod) => {
+      acc[prod.id] = prod;
+      return acc
+    }, Object.assign({}));
     this.currentCart.forEach(cartItem => {
       if (prodObj[cartItem.id]) {
         const prod: Bike = prodObj[cartItem.id];
-        const newValue: Basket = {
+        const availables: Basket = {
           id: prod.id,
           basketCardId: cartItem.basketCardId,
           color: cartItem.color,
@@ -82,7 +81,7 @@ export class CartService {
           imgUrl: prod.imgUrl,
           name: prod.name
         }
-        this.setToCart(newValue);
+        this.setToCart(availables);
       }
     })
   }

@@ -25,7 +25,10 @@ export class AuthService {
   signUp(userData: User, password: string) {
     this.angularFireAuth.createUserWithEmailAndPassword(userData.email, password)
       .then(() => {
-        this.user.addUser(userData);
+        this.user.addUser(userData)
+          .snapshotChanges().pipe(take(1)).subscribe(() => {
+            this.router.navigate(['auth/sign-in']);
+          })
       })
       .catch((error) => {
         this.openWarningMessage(error.message);
@@ -37,7 +40,7 @@ export class AuthService {
       .then(res => {
         this.user.getAuthUser(res.user?.email as string);
         this.isLoggedIn = true;
-        this.router.navigate(['auth/sign-out']);
+        this.router.navigate(['shop']);
       })
       .catch(error => {
         this.openWarningMessage(error.message);
@@ -53,28 +56,22 @@ export class AuthService {
       .signInWithPopup(provider)
       .then(res => {
         const profile = res.additionalUserInfo?.profile as UserProfile;
+        const userData: User = {
+          name: profile.given_name,
+          surname: profile.family_name,
+          role: 'customer',
+          email: profile.email,
+          key: ''
+        }
         this.user.getUserByEmail(profile.email).subscribe(data => {
           if (!data) {
-            const userData: User = {
-              name: profile.given_name,
-              surname: profile.family_name,
-              role: 'customer',
-              email: profile.email,
-              key: ''
-            }
             this.user.addUser(userData)
-              .snapshotChanges().pipe(take(1)).subscribe(() => {
-                this.user.getAuthUser(profile.email);
-                console.log(profile.email)
-                this.isLoggedIn = true;
-                this.router.navigate(['auth/sign-out']);
-                return;
-              })
+              .snapshotChanges().pipe(take(1))
           }
+          this.user.getAuthUser(profile.email);
+          this.isLoggedIn = true;
+          this.router.navigate(['shop']);
         })
-        this.user.getAuthUser(profile.email);
-        this.isLoggedIn = true;
-        this.router.navigate(['auth/sign-out']);
       })
       .catch((error) => {
         this.openWarningMessage(error.message);

@@ -4,7 +4,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { EditPageComponent } from '../create/components/edit-page/edit-page.component';
 import { RolesPageComponent } from './components/roles-page/roles-page.component';
-import { AdminGuard } from '../auth/guards/admin.guard';
+import { AdminOwnerGuard } from '../auth/guards/admin-owner.guard';
 import { OwnerGuard } from '../auth/guards/owner.guard';
 
 const adminRoutes: Routes = [
@@ -14,7 +14,7 @@ const adminRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'create', canActivate: [AdminGuard],
+    path: 'create', canActivate: [AdminOwnerGuard],
     loadChildren: () => import('../create/create.module').then(m => m.CreateModule)
   },
   {

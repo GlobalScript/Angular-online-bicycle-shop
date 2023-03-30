@@ -21,7 +21,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    
+    apiKey: "AIzaSyA19_tWZJGgQI9y03KTb3iXCYeyl23xW6A",
+    authDomain: "online-store-82b00.firebaseapp.com",
+    projectId: "online-store-82b00",
+    storageBucket: "online-store-82b00.appspot.com",
+    messagingSenderId: "777368496841",
+    appId: "1:777368496841:web:3d069f8dab22b8c3683b18",
+    measurementId: "G-9VDZK8HHDX",
+    databaseURL: "https://online-store-82b00-default-rtdb.europe-west1.firebasedatabase.app"
   }
 };
 
